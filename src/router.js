@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 
 Vue.use(Router);
 
-export default function createRouter() {
+export function createRouter() {
   return new Router({
     mode: 'history',
     base: process.env.BASE_URL,
@@ -12,12 +11,12 @@ export default function createRouter() {
       {
         path: '/',
         name: 'home',
-        component: Home,
+        component: () => import( './views/Home.vue'),
       },
       {
         path: '/about',
         name: 'about',
-        component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+        component: () => import( './views/About.vue'),
       },
     ],
   });
