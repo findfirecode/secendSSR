@@ -1,18 +1,40 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <p>欢迎来到我的ssr</p>
+    <div v-for="(item, index) in infoList" :key="index">
+      <img :src="item.img" alt="">
+      <p>{{item.title}}</p>
+      <p>{{item.sale}}</p>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
   name: 'home',
-  components: {
-    HelloWorld,
+  // data() {
+  //   return {
+  //     xList: []
+  //   }
+  // },
+  asyncData ({ store }) {
+    // 触发 action 后，会返回 Promise
+    return store.dispatch('fetchList')
+  },
+  //  mounted() {
+  //   this.$store.dispatch('fetchList')
+  // },
+  computed: {
+    infoList() {
+      return this.$store.state.listinfo
+    }
   },
 };
 </script>
+<style type="text/css">
+  p {
+    font-size: 20px;
+    text-align: center;
+  }
+</style>

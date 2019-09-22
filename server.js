@@ -18,7 +18,7 @@ const clientManifest = require("./dist/vue-ssr-client-manifest.json");
 
 const renderer = createBundleRenderer(bundle, {
     runInNewContext: false,
-    template: fs.readFileSync(resolve("./index.temp.html"), "utf-8"),
+    template: fs.readFileSync(resolve("./src/index.temp.html"), "utf-8"),
     clientManifest: clientManifest
 });
 
@@ -44,3 +44,5 @@ const port = 3000;
 app.listen(port, function() {
     console.log(`server started at localhost:${port}`);
 });
+
+

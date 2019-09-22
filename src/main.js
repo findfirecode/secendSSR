@@ -2,6 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createRouter } from "./router";
 import { createStore } from "./store";
+import './api/mock.js'
+
+Vue.config.productionTip = false;
 
 // 导出一个工厂函数，用于创建新的
 // 应用程序、router 和 store 实例
