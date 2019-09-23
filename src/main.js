@@ -11,6 +11,7 @@ Vue.config.productionTip = false;
 export function createApp () {
   const router = createRouter();
   const store = createStore();
+
   const app = new Vue({
     router,
     store,

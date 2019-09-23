@@ -8,9 +8,9 @@ export default context => {
 
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
-      if (!matchedComponents.length) {
-        return reject({ code: 404 })
-      }
+      // if (!matchedComponents.length) {
+      //   return reject({ code: 404 })
+      // }
 
       // 对所有匹配的路由组件调用 `asyncData()`
       Promise.all(matchedComponents.map(Component => {
@@ -18,6 +18,10 @@ export default context => {
           return Component.asyncData({
             store,
             route: router.currentRoute
+          })
+        }else {
+          return new Promise(resolve => {
+           resolve()
           })
         }
       })).then(() => {
@@ -27,9 +31,8 @@ export default context => {
         // 并且 `template` 选项用于 renderer 时，
         // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
         context.state = store.state
-
         resolve(app)
-      }).catch(reject)
+      })
     }, reject)
   })
 }

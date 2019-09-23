@@ -30,7 +30,7 @@ function renderToString(context) {
     });
 }
 // 第 3 步：添加一个中间件来处理所有请求
-app.use(async (ctx, next) => {
+app.use(async (ctx) => {
     const context = {
         title: "ssr test",
         url: ctx.url
