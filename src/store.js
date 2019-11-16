@@ -10,19 +10,19 @@ export function createStore() {
     state: {
       listinfo: [],
     },
+    actions: {
+      fetchList ({commit}) {
+        return axios({
+          method:"get",
+          url:'/productlist'
+        }).then(res => {
+          commit('refreshList', res.data.listinfo);
+        })
+      }
+    },
     mutations: {
       refreshList(state, list) {
         state.listinfo = list
-      }
-    },
-    actions: {
-      fetchList ({commit}) {
-        axios({
-          method:"get",
-          url:'/productlist',
-        }).then(res=>{
-          commit('refreshList', res.data.listinfo);
-        })
       }
     },
   });

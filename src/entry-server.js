@@ -1,4 +1,4 @@
-import {createApp} from './main';
+import { createApp } from './main';
 
 export default context => {
   return new Promise((resolve, reject) => {
@@ -8,9 +8,9 @@ export default context => {
 
     router.onReady(() => {
       const matchedComponents = router.getMatchedComponents()
-      // if (!matchedComponents.length) {
-      //   return reject({ code: 404 })
-      // }
+      if (!matchedComponents.length) {
+        return reject({ code: 404 })
+      }
 
       // 对所有匹配的路由组件调用 `asyncData()`
       Promise.all(matchedComponents.map(Component => {
@@ -19,10 +19,6 @@ export default context => {
             store,
             route: router.currentRoute
           })
-        }else {
-          return new Promise(resolve => {
-           resolve()
-          })
         }
       })).then(() => {
         // 在所有预取钩子(preFetch hook) resolve 后，
@@ -30,9 +26,11 @@ export default context => {
         // 当我们将状态附加到上下文，
         // 并且 `template` 选项用于 renderer 时，
         // 状态将自动序列化为 `window.__INITIAL_STATE__`，并注入 HTML。
+        console.log('首页state==-===', store.state)
         context.state = store.state
+
         resolve(app)
-      })
+      }).catch(reject)
     }, reject)
   })
 }

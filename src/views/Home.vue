@@ -20,11 +20,12 @@ export default {
   // },
   asyncData ({ store }) {
     // 触发 action 后，会返回 Promise
+    console.log('已经调取store方法')
     return store.dispatch('fetchList')
   },
-  //  mounted() {
-  //   this.$store.dispatch('fetchList')
-  // },
+   mounted() {
+    // this.$store.dispatch('fetchList')
+  },
   computed: {
     infoList() {
       return this.$store.state.listinfo
