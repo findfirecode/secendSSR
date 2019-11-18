@@ -13,14 +13,8 @@
 // @ is an alias to /src
 export default {
   name: 'home',
-  // data() {
-  //   return {
-  //     xList: []
-  //   }
-  // },
   asyncData ({ store }) {
     // 触发 action 后，会返回 Promise
-    console.log('已经调取store方法')
     return store.dispatch('fetchList')
   },
    mounted() {
@@ -28,7 +22,7 @@ export default {
   },
   computed: {
     infoList() {
-      return this.$store.state.listinfo
+        return this.$store.state.listinfo
     }
   },
 };

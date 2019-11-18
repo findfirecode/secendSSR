@@ -20,12 +20,6 @@ Vue.mixin({
     }
 })
 
-const { app, router, store } = createApp()
-
-if (window.__INITIAL_STATE__) {
-    store.replaceState(window.__INITIAL_STATE__)
-}
-
 router.onReady(() => {
     // 添加路由钩子函数，用于处理 asyncData.
     // 在初始路由 resolve 后执行，
